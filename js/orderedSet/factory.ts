@@ -1,42 +1,8 @@
 import * as Module from "../../pkg/collections_wa";
 
+import { EqualityFn, OrderedSetItem, OrderedSet } from "./interfaces";
+
 let ID = 0;
-
-export interface OrderedSet {
-  _getId_(): number;
-}
-
-export interface OrderedSetItem<Item> {
-  readonly data: Item;
-  readonly internalItem: {
-    readonly id: number;
-    readonly equals: ReadonlyArray<ReadonlyArray<number>>;
-    readonly compares: ReadonlyArray<ReadonlyArray<number>>;
-  };
-}
-
-type EqualityFn<Item> = (item: Item) => ReadonlyArray<ReadonlyArray<number>>;
-
-type SortFn = (
-  val: string | number | boolean | Date | undefined | null
-) => number[];
-
-export const asc: SortFn = val => {
-  switch (typeof val) {
-    case "undefined":
-      return [];
-    case "string":
-      return val.split("").map(s => s.charCodeAt(0));
-    case "number":
-      return [val];
-    case "boolean":
-      return [val ? 1 : -1];
-    default:
-      return val ? [val.getTime()] : [];
-  }
-};
-
-export const desc: SortFn = val => asc(val).map(i => -i);
 
 const buildSetItem = <Item>(
   equals: EqualityFn<Item>,

@@ -1,6 +1,11 @@
-import * as module from "../pkg/collections_wa";
 import { orderedSetFactory } from "./orderedSet/factory";
 
-const createOrderedSet = orderedSetFactory(module);
+const collections = (async function() {
+  const module = await import("../pkg/collections_wa");
+  return {
+    createOrderedSet: orderedSetFactory(module)
+  };
+})();
 
-export { createOrderedSet };
+export * from "./orderedSet/index";
+export default collections;

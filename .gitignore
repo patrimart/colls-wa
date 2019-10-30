@@ -3,4 +3,6 @@
 /dist
 /target
 /pkg
-/wasm-pack.log
+wasm-pack.log
+yarn.lock
+yarn-error.log

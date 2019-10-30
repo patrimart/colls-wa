@@ -1,0 +1,16 @@
+/.vscode
+/js
+/node_modules
+/pkg
+/src
+/static
+/target
+/tests
+.gitignore
+Cargo.lock
+Cargo.toml
+tsconfig.json
+webpack.config.js
+wasm-pack.log
+yarn.lock
+yarn-error.log
