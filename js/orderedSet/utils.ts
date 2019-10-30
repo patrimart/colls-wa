@@ -11,7 +11,7 @@ export const asc: SortFn = val => {
     case "boolean":
       return [val ? 1 : -1];
     default:
-      return val ? [val.getTime()] : [];
+      return val instanceof Date ? [val.getTime()] : [];
   }
 };
 
