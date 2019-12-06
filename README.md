@@ -1,34 +1,31 @@
+# colls-wa
+
+
+
 ## How to install
 
 ```sh
-npm install
-```
-
-## How to run in debug mode
-
-```sh
-# Builds the project and opens it in a new browser tab. Auto-reloads when the project changes.
-npm start
+yarn
 ```
 
 ## How to build in release mode
 
 ```sh
 # Builds the project and places it into the `dist` folder.
-npm run build
+yarn build
 ```
 
 ## How to run unit tests
 
 ```sh
 # Runs tests in Firefox
-npm test -- --firefox
+yarn test -- --firefox
 
 # Runs tests in Chrome
-npm test -- --chrome
+yarn test -- --chrome
 
 # Runs tests in Safari
-npm test -- --safari
+yarn test -- --safari
 ```
 
 ## What does each file do?
@@ -42,7 +39,5 @@ npm test -- --safari
 * The `js` folder contains your JavaScript code (`index.js` is used to hook everything into Webpack, you don't need to change it).
 
 * The `src` folder contains your Rust code.
-
-* The `static` folder contains any files that you want copied as-is into the final build. It contains an `index.html` file which loads the `index.js` file.
 
 * The `tests` folder contains your Rust unit tests.
