@@ -11,7 +11,7 @@ module.exports = {
   output: {
     library: "collections",
     libraryTarget: "umd",
-    globalObject: "this",
+    globalObject: "self",
     path: dist,
     filename: "[name].js"
   },
