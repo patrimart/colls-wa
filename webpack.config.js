@@ -9,6 +9,9 @@ module.exports = {
     index: "./js/index.ts"
   },
   output: {
+    library: "collections",
+    libraryTarget: "umd",
+    globalObject: "this",
     path: dist,
     filename: "[name].js"
   },
@@ -28,7 +31,6 @@ module.exports = {
   plugins: [
     new WasmPackPlugin({
       crateDirectory: __dirname,
-      // extraArgs: "--out-name index"
     })
   ]
 };

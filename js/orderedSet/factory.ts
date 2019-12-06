@@ -9,11 +9,12 @@ const buildSetItem = <Item>(
   compares: EqualityFn<Item>
 ) => (data: Item): OrderedSetItem<Item> => ({
   data,
-  internalItem: {
-    id: ID++,
-    equals: equals(data),
-    compares: compares(data)
-  }
+  internalItem: [ID++, equals(data), compares(data)]
+  // internalItem: {
+  //   id: ID++,
+  //   equals: equals(data),
+  //   compares: compares(data)
+  // }
 });
 
 export const orderedSetFactory = (module: typeof Module) => {
@@ -32,7 +33,7 @@ export const orderedSetFactory = (module: typeof Module) => {
       for (let i = 0; i < items.length; i++) {
         const item = _buildSetItem(items[i]);
         setItems[i] = item.internalItem;
-        _items.set(_bigIntToStr(item.internalItem.id), item);
+        _items.set(_bigIntToStr(item.internalItem[0]), item);
       }
       return setItems;
     };
@@ -81,13 +82,15 @@ export const orderedSetFactory = (module: typeof Module) => {
      *
      */
     const contains = (item: Item): boolean =>
-      module.ordered_set_contains(_ID_, _buildSetItem(item));
+      module.ordered_set_contains(_ID_, _buildSetItem(item).internalItem);
 
     /**
      *
      */
     const find = (item: Item): number =>
-      _bigIntToNum(module.ordered_set_find(_ID_, _buildSetItem(item)));
+      _bigIntToNum(
+        module.ordered_set_find(_ID_, _buildSetItem(item).internalItem)
+      );
 
     /**
      *

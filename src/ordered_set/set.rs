@@ -33,7 +33,7 @@ impl OrderedSet {
 
   pub fn get_at(&self, index: usize) -> i64 {
     match self.items.get(index) {
-      Some(item) => item.id as i64,
+      Some(item) => item.0 as i64,
       None => -1,
     }
   }
@@ -51,7 +51,7 @@ impl OrderedSet {
 
   pub fn slice(&self, start: usize, end: usize) -> Vec<u32> {
     match self.items.get(start..end.min(self.items.len())) {
-      Some(v) => v.iter().map(|item| item.id.clone()).collect(),
+      Some(v) => v.iter().map(|item| item.0.clone()).collect(),
       None => vec![],
     }
   }
@@ -59,7 +59,7 @@ impl OrderedSet {
   /// Remove the last item from the Set.
   pub fn pop(&mut self) -> i64 {
     if self.items.len() > 0 {
-      self.items.remove(self.items.len() - 1).id as i64
+      self.items.remove(self.items.len() - 1).0 as i64
     } else {
       -1
     }
@@ -68,7 +68,7 @@ impl OrderedSet {
   /// Remove the first item from the Set.
   pub fn shift(&mut self) -> i64 {
     if self.items.len() > 0 {
-      self.items.remove(0).id as i64
+      self.items.remove(0).0 as i64
     } else {
       -1
     }
@@ -79,7 +79,7 @@ impl OrderedSet {
     for item in items.into_iter() {
       if let Ok(index) = self.items.binary_search(&item) {
         let i = self.items.remove(index);
-        removed.push(i.id)
+        removed.push(i.0)
       }
     }
     removed
@@ -87,14 +87,14 @@ impl OrderedSet {
 
   pub fn remove_at(&mut self, index: usize) -> i64 {
     if self.items.len() > 0 {
-      self.items.remove(index).id as i64
+      self.items.remove(index).0 as i64
     } else {
       -1
     }
   }
 
   pub fn to_array(&self) -> Vec<u32> {
-    self.items.iter().map(|item| item.id.clone()).collect()
+    self.items.iter().map(|item| item.0.clone()).collect()
   }
 
   pub fn clear(&mut self) -> () {

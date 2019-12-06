@@ -4,11 +4,11 @@ export interface OrderedSet {
 
 export interface OrderedSetItem<Item> {
   readonly data: Item;
-  readonly internalItem: {
-    readonly id: number;
-    readonly equals: ReadonlyArray<ReadonlyArray<number>>;
-    readonly compares: ReadonlyArray<ReadonlyArray<number>>;
-  };
+  readonly internalItem: [
+    number, // ID
+    ReadonlyArray<ReadonlyArray<number>>, // equals
+    ReadonlyArray<ReadonlyArray<number>> // compares
+  ];
 }
 
 export type EqualityFn<Item> = (
