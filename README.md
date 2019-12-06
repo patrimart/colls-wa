@@ -10,6 +10,7 @@ Available Collections:
 
 1. Webpack converts the dynamic `import` to `document.createElement('script')`.
    This prevents the library from being used in a web worker. Need to preserve `import`.
+   May just need to write vanilla JS and avoid Webpack.
 
 ## How to install
 
