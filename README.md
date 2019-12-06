@@ -21,6 +21,7 @@ yarn
 
 ```sh
 # Builds the wasm file and JS bindings in /pkg (imported from /js).
+# (Recommend) Global install wasm-pack
 wasm-pack build
 ```
 
